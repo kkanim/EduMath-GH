@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WAEC Prep | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Dashboard Navigation */
+    .dashboard-nav {
+      position: sticky;
+      top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .dashboard-nav .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .dashboard-nav .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    /* Cards */
+    .dashboard-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .waec-card {
+      border-left: 4px solid var(--accent-orange);
+    }
+    
+    .countdown-card {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, #0066CC 100%);
+      color: white;
+    }
+    
+    .topic-badge {
+      font-size: 0.75rem;
+      padding: 0.35em 0.65em;
+    }
+    
+    /* Progress Bars */
+    .progress {
+      height: 8px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+    }
+    
+    .progress-bar {
+      background-color: var(--primary-blue);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-nav {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Kwame
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3">
+        <div class="card dashboard-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="student-avatar.jpg" class="rounded-circle me-3" width="60" height="60" alt="Student">
+              <div>
+                <h5 class="mb-0">Kwame Mensah</h5>
+                <small class="text-muted">JHS 3 Student</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lessons.html">
+                  <i class="fas fa-book"></i> My Lessons
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="assignments.html">
+                  <i class="fas fa-clipboard-check"></i> Assignments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="progress.html">
+                  <i class="fas fa-chart-line"></i> Progress Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="waec-prep.html">
+                  <i class="fas fa-question-circle"></i> WAEC Prep
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="settings.html">
+                  <i class="fas fa-cog"></i> Account Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h2 class="mb-2">WAEC Preparation</h2>
+            <p class="lead text-muted">Get ready for your BECE exams</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <span class="badge bg-danger rounded-pill px-3 py-2">BECE Candidate 2024</span>
+          </div>
+        </div>
+        
+        <!-- Countdown and WAEC Info -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="card dashboard-card countdown-card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h5 class="text-white mb-1">BECE Countdown</h5>
+                    <h1 class="text-white mb-0" id="countdown">120 Days</h1>
+                    <p class="text-white-50 mb-0">Until Mathematics Paper 1</p>
+                  </div>
+                  <i class="fas fa-calendar-alt fa-3x text-white-50"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card dashboard-card">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Exam Information</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span><i class="fas fa-file-alt me-2 text-primary"></i> Papers</span>
+                    <span class="badge bg-primary rounded-pill">2</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span><i class="fas fa-clock me-2 text-primary"></i> Duration</span>
+                    <span class="badge bg-primary rounded-pill">2hrs 30mins</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span><i class="fas fa-percentage me-2 text-primary"></i> Total Marks</span>
+                    <span class="badge bg-primary rounded-pill">100</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- WAEC Prep Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card dashboard-card h-100">
+              <div class="card-body text-center">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-flex mb-3">
+                  <i class="fas fa-file-alt fa-2x text-primary"></i>
+                </div>
+                <h5>Past Questions</h5>
+                <p class="text-muted">Practice with real WAEC questions from previous years</p>
+                <a href="#" class="btn btn-primary">Start Practicing</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card h-100">
+              <div class="card-body text-center">
+                <div class="bg-warning bg-opacity-10 p-3 rounded-circle d-inline-flex mb-3">
+                  <i class="fas fa-stopwatch fa-2x text-warning"></i>
+                </div>
+                <h5>Timed Tests</h5>
+                <p class="text-muted">Simulate exam conditions with timed practice tests</p>
+                <a href="#" class="btn btn-warning">Take a Test</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card h-100">
+              <div class="card-body text-center">
+                <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-flex mb-3">
+                  <i class="fas fa-chalkboard-teacher fa-2x text-success"></i>
+                </div>
+                <h5>Exam Strategies</h5>
+                <p class="text-muted">Learn tips and tricks for maximizing your score</p>
+                <a href="#" class="btn btn-success">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Syllabus Coverage -->
+        <div class="card dashboard-card waec-card mb-4">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Syllabus Coverage</h5>
+            
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span>Overall Syllabus Completion</span>
+                <strong>68%</strong>
+              </div>
+              <div class="progress" style="height: 10px;">
+                <div class="progress-bar" role="progressbar" style="width: 68%"></div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="mb-3">Topics Covered</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Number Bases</span>
+                    <span class="badge bg-success rounded-pill">Completed</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Fractions &amp; Decimals</span>
+                    <span class="badge bg-success rounded-pill">Completed</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Linear Equations</span>
+                    <span class="badge bg-success rounded-pill">Completed</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Geometry Angles</span>
+                    <span class="badge bg-primary rounded-pill">In Progress</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="col-md-6">
+                <h6 class="mb-3">Topics Remaining</h6>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Quadratic Equations</span>
+                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Trigonometry</span>
+                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Probability</span>
+                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                    <span>Statistics</span>
+                    <span class="badge bg-secondary rounded-pill">Pending</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Practice Test Results -->
+        <div class="card dashboard-card mb-4">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Recent Practice Test Results</h5>
+            
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Test Date</th>
+                    <th>Test Type</th>
+                    <th>Score</th>
+                    <th>Time Spent</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>15 Nov 2023</td>
+                    <td>Full Paper 1</td>
+                    <td><span class="badge bg-success">78%</span></td>
+                    <td>2h 15m</td>
+                    <td><a href="#" class="btn btn-sm btn-outline-primary">Review</a></td>
+                  </tr>
+                  <tr>
+                    <td>8 Nov 2023</td>
+                    <td>Algebra Focus</td>
+                    <td><span class="badge bg-warning">65%</span></td>
+                    <td>1h 30m</td>
+                    <td><a href="#" class="btn btn-sm btn-outline-primary">Review</a></td>
+                  </tr>
+                  <tr>
+                    <td>1 Nov 2023</td>
+                    <td>Geometry Focus</td>
+                    <td><span class="badge bg-success">82%</span></td>
+                    <td>1h 45m</td>
+                    <td><a href="#" class="btn btn-sm btn-outline-primary">Review</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="text-center mt-3">
+              <a href="#" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Start New Practice Test
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Students</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Assignments</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Progress</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Past Questions</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Guides</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Countdown Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set the date we're counting down to (BECE 2024 - example date)
+      const countDownDate = new Date("June 10, 2024 00:00:00").getTime();
+      
+      // Update the countdown every 1 second
+      const x = setInterval(function() {
+        // Get today's date and time
+        const now = new Date().getTime();
+        
+        // Find the distance between now and the countdown date
+        const distance = countDownDate - now;
+        
+        // Time calculations for days, hours, minutes, seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        
+        // Display the result
+        document.getElementById("countdown").innerHTML = days + " Days";
+        
+        // If the countdown is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "EXAM TIME!";
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

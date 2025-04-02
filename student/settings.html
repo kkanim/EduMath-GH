@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account Settings | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Dashboard Navigation */
+    .dashboard-nav {
+      position: sticky;
+      top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .dashboard-nav .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .dashboard-nav .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    /* Cards */
+    .dashboard-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .settings-tabs .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .settings-tabs .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .settings-tabs .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .avatar-upload {
+      position: relative;
+      max-width: 150px;
+      margin: 0 auto;
+    }
+    
+    .avatar-upload .avatar-preview {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #f0f0f0;
+      overflow: hidden;
+    }
+    
+    .avatar-upload .btn-upload {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary-blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-nav {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Kwame
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3">
+        <div class="card dashboard-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="student-avatar.jpg" class="rounded-circle me-3" width="60" height="60" alt="Student">
+              <div>
+                <h5 class="mb-0">Kwame Mensah</h5>
+                <small class="text-muted">JHS 3 Student</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lessons.html">
+                  <i class="fas fa-book"></i> My Lessons
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="assignments.html">
+                  <i class="fas fa-clipboard-check"></i> Assignments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="progress.html">
+                  <i class="fas fa-chart-line"></i> Progress Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="waec-prep.html">
+                  <i class="fas fa-question-circle"></i> WAEC Prep
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="settings.html">
+                  <i class="fas fa-cog"></i> Account Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="row mb-4">
+          <div class="col-12">
+            <h2 class="mb-2">Account Settings</h2>
+            <p class="lead text-muted">Manage your profile and preferences</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body">
+                <ul class="nav flex-column settings-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#profile">
+                      <i class="fas fa-user me-2"></i> Profile
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#security">
+                      <i class="fas fa-lock me-2"></i> Security
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#notifications">
+                      <i class="fas fa-bell me-2"></i> Notifications
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#privacy">
+                      <i class="fas fa-shield-alt me-2"></i> Privacy
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-8">
+            <div class="tab-content">
+              <!-- Profile Tab -->
+              <div class="tab-pane fade show active" id="profile">
+                <div class="card dashboard-card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Profile Information</h5>
+                    
+                    <div class="text-center mb-4">
+                      <div class="avatar-upload">
+                        <div class="avatar-preview">
+                          <img src="student-avatar.jpg" alt="Profile" class="img-fluid">
+                        </div>
+                        <div class="btn-upload">
+                          <i class="fas fa-camera"></i>
+                          <input type="file" class="d-none" id="avatarInput">
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <form>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="firstName" class="form-label">First Name</label>
+                          <input type="text" class="form-control" id="firstName" value="Kwame">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lastName" class="form-label">Last Name</label>
+                          <input type="text" class="form-control" id="lastName" value="Mensah">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" value="kwame.mensah@example.com">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="phone" class="form-label">Phone</label>
+                          <input type="tel" class="form-control" id="phone" value="+233 24 123 4567">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="school" class="form-label">School</label>
+                          <input type="text" class="form-control" id="school" value="Accra Academy">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="grade" class="form-label">Grade Level</label>
+                          <select class="form-select" id="grade">
+                            <option selected>JHS 3</option>
+                            <option>JHS 2</option>
+                            <option>JHS 1</option>
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label for="bio" class="form-label">Bio</label>
+                          <textarea class="form-control" id="bio" rows="3">I'm a JHS 3 student preparing for my BECE exams. I love mathematics and want to improve my skills.</textarea>
+                        </div>
+                        <div class="col-12 text-end">
+                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Security Tab -->
+              <div class="tab-pane fade" id="security">
+                <div class="card dashboard-card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Security Settings</h5>
+                    
+                    <form>
+                      <div class="mb-4">
+                        <h6 class="mb-3">Change Password</h6>
+                        <div class="mb-3">
+                          <label for="currentPassword" class="form-label">Current Password</label>
+                          <input type="password" class="form-control" id="currentPassword">
+                        </div>
+                        <div class="mb-3">
+                          <label for="newPassword" class="form-label">New Password</label>
+                          <input type="password" class="form-control" id="newPassword">
+                        </div>
+                        <div class="mb-3">
+                          <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                          <input type="password" class="form-control" id="confirmPassword">
+                        </div>
+                        <div class="text-end">
+                          <button type="submit" class="btn btn-primary">Update Password</button>
+                        </div>
+                      </div>
+                      
+                      <hr class="my-4">
+                      
+                      <div class="mb-3">
+                        <h6 class="mb-3">Two-Factor Authentication</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <p class="mb-0">Add an extra layer of security to your account</p>
+                            <small class="text-muted">Currently disabled</small>
+                          </div>
+                          <button type="button" class="btn btn-outline-primary">Enable</button>
+                        </div>
+                      </div>
+                      
+                      <hr class="my-4">
+                      
+                      <div>
+                        <h6 class="mb-3">Active Sessions</h6>
+                        <div class="list-group list-group-flush">
+                          <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                              <h6 class="mb-0">Chrome on Windows</h6>
+                              <small class="text-muted">Accra, Ghana • 15 Nov 2023, 10:30 AM</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Logout</button>
+                          </div>
+                          <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                              <h6 class="mb-0">Safari on iPhone</h6>
+                              <small class="text-muted">Accra, Ghana • 14 Nov 2023, 8:15 PM</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger">Logout</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Notifications Tab -->
+              <div class="tab-pane fade" id="notifications">
+                <div class="card dashboard-card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Notification Preferences</h5>
+                    
+                    <form>
+                      <div class="mb-4">
+                        <h6 class="mb-3">Email Notifications</h6>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="assignmentEmails" checked>
+                          <label class="form-check-label" for="assignmentEmails">New assignments</label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="lessonEmails" checked>
+                          <label class="form-check-label" for="lessonEmails">Lesson reminders</label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="progressEmails">
+                          <label class="form-check-label" for="progressEmails">Weekly progress reports</label>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="promoEmails">
+                          <label class="form-check-label" for="promoEmails">Promotional offers</label>
+                        </div>
+                      </div>
+                      
+                      <hr class="my-4">
+                      
+                      <div class="mb-4">
+                        <h6 class="mb-3">Push Notifications</h6>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="assignmentPush" checked>
+                          <label class="form-check-label" for="assignmentPush">Assignment deadlines</label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="lessonPush" checked>
+                          <label class="form-check-label" for="lessonPush">Upcoming lessons</label>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="systemPush">
+                          <label class="form-check-label" for="systemPush">System messages</label>
+                        </div>
+                      </div>
+                      
+                      <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Privacy Tab -->
+              <div class="tab-pane fade" id="privacy">
+                <div class="card dashboard-card">
+                  <div class="card-body">
+                    <h5 class="card-title mb-4">Privacy Settings</h5>
+                    
+                    <form>
+                      <div class="mb-4">
+                        <h6 class="mb-3">Profile Visibility</h6>
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" type="radio" name="profileVisibility" id="publicProfile">
+                          <label class="form-check-label" for="publicProfile">
+                            Public - Anyone can see your profile
+                          </label>
+                        </div>
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" type="radio" name="profileVisibility" id="privateProfile" checked>
+                          <label class="form-check-label" for="privateProfile">
+                            Private - Only you can see your profile
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <hr class="my-4">
+                      
+                      <div class="mb-4">
+                        <h6 class="mb-3">Data Sharing</h6>
+                        <div class="form-check form-switch mb-2">
+                          <input class="form-check-input" type="checkbox" id="shareProgress">
+                          <label class="form-check-label" for="shareProgress">
+                            Share anonymized progress data for research
+                          </label>
+                        </div>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" id="shareSchool" checked>
+                          <label class="form-check-label" for="shareSchool">
+                            Share my progress with my school
+                          </label>
+                        </div>
+                      </div>
+                      
+                      <hr class="my-4">
+                      
+                      <div>
+                        <h6 class="mb-3">Account Deletion</h6>
+                        <p class="text-muted mb-3">Permanently delete your account and all associated data. This action cannot be undone.</p>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                          Delete Account
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Account Modal -->
+  <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Your Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete your account? This will permanently remove all your data, including:</p>
+          <ul>
+            <li>Progress and achievements</li>
+            <li>Assignment submissions</li>
+            <li>Lesson history</li>
+            <li>Personal information</li>
+          </ul>
+          <p class="text-danger">This action cannot be undone.</p>
+          <div class="mb-3">
+            <label for="deleteConfirm" class="form-label">Type "DELETE" to confirm</label>
+            <input type="text" class="form-control" id="deleteConfirm">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger">Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Students</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Assignments</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Progress</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Past Questions</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Guides</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Avatar Upload Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const avatarInput = document.getElementById('avatarInput');
+      const avatarPreview = document.querySelector('.avatar-preview img');
+      
+      avatarInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            avatarPreview.src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>For Schools | EduMath GH</title>
+  <meta name="description" content="Comprehensive WAEC-aligned maths solution for Ghanaian schools - improve BECE/WASSCE results">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    .school-feature-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(30,144,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-blue);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3rem;
+      top: 0.25rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      border: 3px solid white;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link active" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="contact.html">Get Started</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Schools Hero -->
+  <section class="py-5 text-white" style="background: linear-gradient(rgba(30,144,255,0.85), rgba(30,144,255,0.85)), url('ghana-school.jpg'); background-size: cover; background-position: center;">
+    <div class="container text-center">
+      <h1 class="display-5 fw-bold">Transform Your School's Maths Performance</h1>
+      <p class="lead mb-4">WAEC-aligned platform trusted by 50+ Ghanaian schools</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#demo" class="btn btn-light btn-lg px-4">Request Demo</a>
+        <a href="#pricing" class="btn btn-outline-light btn-lg px-4">See Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- School Benefits -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 style="color: var(--primary-blue);">Why Ghanaian Schools Choose EduMath GH</h2>
+        <p class="lead">Designed specifically for Ghana's education system</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="text-center p-4 h-100">
+            <div class="school-feature-icon mx-auto">
+              <i class="fas fa-chart-line fa-2x text-primary"></i>
+            </div>
+            <h5>Proven Results</h5>
+            <p>Schools average 25% improvement in BECE maths scores within one academic year.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="text-center p-4 h-100">
+            <div class="school-feature-icon mx-auto">
+              <i class="fas fa-cedi-sign fa-2x text-primary"></i>
+            </div>
+            <h5>Cost-Effective</h5>
+            <p>Affordable pricing in Ghana Cedis with bulk discounts for schools.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="text-center p-4 h-100">
+            <div class="school-feature-icon mx-auto">
+              <i class="fas fa-users fa-2x text-primary"></i>
+            </div>
+            <h5>Teacher Support</h5>
+            <p>Training and resources to enhance your staff's teaching capacity.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="text-center p-4 h-100">
+            <div class="school-feature-icon mx-auto">
+              <i class="fas fa-mobile-alt fa-2x text-primary"></i>
+            </div>
+            <h5>Low-Tech Friendly</h5>
+            <p>Works on basic smartphones - perfect for schools with limited devices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">How It Works For Schools</h2>
+      
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="timeline">
+            <!-- Step 1 -->
+            <div class="timeline-item">
+              <h4>1. School Registration</h4>
+              <p>Complete our simple onboarding form with your school details and student numbers.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="timeline-item">
+              <h4>2. Teacher Training</h4>
+              <p>We conduct free staff training (in-person or online) on using the platform.</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="timeline-item">
+              <h4>3. Student Accounts</h4>
+              <p>We create bulk accounts for your students with secure login credentials.</p>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="timeline-item">
+              <h4>4. Implementation</h4>
+              <p>Start using EduMath GH in your maths lessons with our recommended schedule.</p>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="timeline-item">
+              <h4>5. Monitoring & Support</h4>
+              <p>Access performance dashboards and receive ongoing support from our team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <a href="#" class="btn btn-primary btn-lg">Download School Implementation Guide (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- School Pricing -->
+  <section class="py-5" id="pricing">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Simple School Pricing</h2>
+      <p class="lead text-center mb-5">All prices in Ghana Cedis with flexible payment options</p>
+      
+      <div class="row g-4">
+        <!-- Basic Plan -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header py-3 bg-white text-center">
+              <h4>Basic</h4>
+              <p class="text-muted mb-0">For small schools</p>
+            </div>
+            <div class="card-body text-center">
+              <h3 class="my-3">GH₵45<span class="text-muted small">/student/term</span></h3>
+              <ul class="list-unstyled text-start mb-4">
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Up to 100 students</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Core platform features</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Basic reporting</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Email support</li>
+                <li class="mb-2 text-muted"><i class="fas fa-times me-2"></i> Teacher training</li>
+                <li class="mb-2 text-muted"><i class="fas fa-times me-2"></i> Parent accounts</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white text-center">
+              <a href="#" class="btn btn-outline-primary">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Standard Plan (Featured) -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-lg border-primary border-2">
+            <div class="card-header py-3 bg-primary text-white text-center">
+              <h4>Standard</h4>
+              <p class="mb-0">Most popular choice</p>
+            </div>
+            <div class="card-body text-center">
+              <h3 class="my-3">GH₵35<span class="text-muted small">/student/term</span></h3>
+              <ul class="list-unstyled text-start mb-4">
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 100-300 students</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All platform features</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Advanced analytics</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Priority support</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Teacher training</li>
+                <li class="mb-2 text-muted"><i class="fas fa-times me-2"></i> Parent accounts</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white text-center">
+              <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Premium Plan -->
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header py-3 bg-white text-center">
+              <h4>Premium</h4>
+              <p class="text-muted mb-0">For large institutions</p>
+            </div>
+            <div class="card-body text-center">
+              <h3 class="my-3">GH₵25<span class="text-muted small">/student/term</span></h3>
+              <ul class="list-unstyled text-start mb-4">
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 300+ students</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All features included</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Comprehensive reporting</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Dedicated manager</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Staff training</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Parent accounts</li>
+              </ul>
+            </div>
+            <div class="card-footer bg-white text-center">
+              <a href="#" class="btn btn-outline-primary">Contact for Quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <p class="text-muted">All plans include WAEC-aligned content for JHS and SHS students</p>
+        <a href="#" class="text-primary">View detailed pricing comparison →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- School Dashboard Preview -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 style="color: var(--primary-blue);">Powerful School Dashboard</h2>
+          <p class="lead">Monitor your students' progress in real-time</p>
+          <ul>
+            <li class="mb-2">Track individual and class performance</li>
+            <li class="mb-2">Identify struggling topics</li>
+            <li class="mb-2">Generate termly reports</li>
+            <li class="mb-2">Compare performance across classes</li>
+          </ul>
+          <a href="#" class="btn btn-primary mt-3">View Sample Dashboard</a>
+        </div>
+        <div class="col-lg-6">
+          <img src="school-dashboard-preview.png" alt="School dashboard preview" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Request Section -->
+  <section class="py-5" id="demo">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 style="color: var(--primary-blue);">Ready to See EduMath GH in Your School?</h2>
+          <p class="lead mb-5">Book a free demo session for your staff</p>
+          
+          <div class="card shadow-sm">
+            <div class="card-body p-5">
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-lg" placeholder="School Name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-lg" placeholder="Location (Region)">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-lg" placeholder="Contact Person">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="tel" class="form-control form-control-lg" placeholder="Phone Number" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-select form-select-lg">
+                      <option selected>Number of Students</option>
+                      <option>Under 100</option>
+                      <option>100-300</option>
+                      <option>300-500</option>
+                      <option>500+</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <textarea class="form-control form-control-lg" rows="3" placeholder="Any specific needs or questions?"></textarea>
+                  </div>
+                  <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Request Free Demo</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">For Schools</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">School Pricing</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Implementation Guide</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Teacher Training</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Case Studies</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lesson Plans</a></li>
+            <li><a href="#" class="text-white text-decoration-none">School Reports</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Research</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> schools@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

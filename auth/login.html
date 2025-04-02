@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | EduMath GH</title>
+  <meta name="description" content="Access your EduMath GH account for WAEC-aligned maths resources">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    .login-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .login-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .login-header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .form-control:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 0.25rem rgba(30, 144, 255, 0.25);
+    }
+    .btn-ghana {
+      background: var(--primary-blue);
+      color: white;
+      font-weight: 600;
+    }
+    .btn-ghana:hover {
+      background: #1a7fd9;
+      color: white;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #6c757d;
+      margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .divider::before {
+      margin-right: 1rem;
+    }
+    .divider::after {
+      margin-left: 1rem;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="signup.html">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="login-container">
+        <div class="login-card">
+          <!-- Header -->
+          <div class="login-header">
+            <h3>Welcome Back</h3>
+            <p class="mb-0">Sign in to continue your maths journey</p>
+          </div>
+          
+          <!-- Body -->
+          <div class="card-body p-4 p-md-5 bg-white">
+            <!-- Login Form -->
+            <form id="loginForm">
+              <!-- Email/Phone -->
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email or Phone Number</label>
+                <input type="text" class="form-control" id="loginEmail" required>
+              </div>
+              
+              <!-- Password -->
+              <div class="mb-3 position-relative">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+                <span class="password-toggle" onclick="togglePassword('loginPassword')">
+                  <i class="far fa-eye"></i>
+                </span>
+              </div>
+              
+              <!-- Remember & Forgot -->
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="remember">
+                  <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+                <a href="forgot-password.html" class="text-primary">Forgot password?</a>
+              </div>
+              
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-ghana btn-lg w-100 py-2 mb-3">Sign In</button>
+              
+              <!-- Divider -->
+              <div class="divider">OR</div>
+              
+              <!-- Social Login -->
+              <div class="text-center">
+                <p class="mb-3">Sign in with:</p>
+                <div class="d-flex justify-content-center gap-3">
+                  <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 45px; height: 45px;">
+                    <i class="fab fa-google"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 45px; height: 45px;">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Footer -->
+          <div class="card-footer text-center bg-light py-3">
+            <p class="mb-0">Don't have an account? <a href="signup.html" class="text-primary">Sign up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Programmes</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Resources</a></li>
+            <li><a href="#" class="text-white text-decoration-none">For Schools</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Support</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Help Center</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Script -->
+  <script>
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const icon = event.currentTarget.querySelector('i');
+      
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = "password";
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+    
+    // Form submission
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Add your login logic here
+      //alert('Login functionality would be implemented here');
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>

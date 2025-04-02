@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress Reports | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Dashboard Navigation */
+    .dashboard-nav {
+      position: sticky;
+      top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .dashboard-nav .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .dashboard-nav .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    /* Cards */
+    .dashboard-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+    }
+    
+    .progress-item {
+      border-left: 3px solid var(--primary-blue);
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .progress-item.completed {
+      border-left-color: #28a745;
+    }
+    
+    .progress-item.needs-work {
+      border-left-color: #ffc107;
+    }
+    
+    .progress-item.weak {
+      border-left-color: #dc3545;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-nav {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Kwame
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3">
+        <div class="card dashboard-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="student-avatar.jpg" class="rounded-circle me-3" width="60" height="60" alt="Student">
+              <div>
+                <h5 class="mb-0">Kwame Mensah</h5>
+                <small class="text-muted">JHS 3 Student</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lessons.html">
+                  <i class="fas fa-book"></i> My Lessons
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="assignments.html">
+                  <i class="fas fa-clipboard-check"></i> Assignments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="progress.html">
+                  <i class="fas fa-chart-line"></i> Progress Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="waec-prep.html">
+                  <i class="fas fa-question-circle"></i> WAEC Prep
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="settings.html">
+                  <i class="fas fa-cog"></i> Account Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h2 class="mb-2">Progress Reports</h2>
+            <p class="lead text-muted">Track your learning journey</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="timeDropdown" data-bs-toggle="dropdown">
+                <i class="fas fa-calendar me-1"></i> Last 30 Days
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+                <li><a class="dropdown-item active" href="#">Last 30 Days</a></li>
+                <li><a class="dropdown-item" href="#">Last 3 Months</a></li>
+                <li><a class="dropdown-item" href="#">All Time</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Progress Summary -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body text-center">
+                <h1 class="display-4 text-primary mb-2">83%</h1>
+                <h5>Average Score</h5>
+                <p class="text-muted mb-0">+5% from last month</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body text-center">
+                <h1 class="display-4 text-success mb-2">17</h1>
+                <h5>Topics Mastered</h5>
+                <p class="text-muted mb-0">Out of 25 attempted</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body text-center">
+                <h1 class="display-4 text-warning mb-2">8</h1>
+                <h5>Topics to Review</h5>
+                <p class="text-muted mb-0">Need more practice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Progress Charts -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="card dashboard-card h-100">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Performance Trend</h5>
+                <div class="chart-container">
+                  <canvas id="performanceChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card dashboard-card h-100">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Topic Mastery</h5>
+                <div class="chart-container">
+                  <canvas id="masteryChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Detailed Progress -->
+        <div class="card dashboard-card mb-4">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Detailed Progress by Topic</h5>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="text-success mb-3"><i class="fas fa-check-circle me-2"></i>Strong Areas (&gt;85%)</h6>
+                
+                <div class="progress-item completed">
+                  <div class="d-flex justify-content-between">
+                    <h6>Number Bases</h6>
+                    <strong>94%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 94%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 2 days ago</small>
+                </div>
+                
+                <div class="progress-item completed">
+                  <div class="d-flex justify-content-between">
+                    <h6>Fractions</h6>
+                    <strong>91%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 91%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 1 week ago</small>
+                </div>
+                
+                <div class="progress-item completed">
+                  <div class="d-flex justify-content-between">
+                    <h6>Linear Equations</h6>
+                    <strong>88%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 88%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 3 days ago</small>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <h6 class="text-warning mb-3"><i class="fas fa-exclamation-triangle me-2"></i>Areas Needing Work (65-85%)</h6>
+                
+                <div class="progress-item needs-work">
+                  <div class="d-flex justify-content-between">
+                    <h6>Quadratic Equations</h6>
+                    <strong>78%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 78%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 5 days ago</small>
+                </div>
+                
+                <div class="progress-item needs-work">
+                  <div class="d-flex justify-content-between">
+                    <h6>Trigonometry</h6>
+                    <strong>72%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 72%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 1 week ago</small>
+                </div>
+                
+                <h6 class="text-danger mt-4 mb-3"><i class="fas fa-times-circle me-2"></i>Weak Areas (&lt;65%)</h6>
+                
+                <div class="progress-item weak">
+                  <div class="d-flex justify-content-between">
+                    <h6>Probability</h6>
+                    <strong>62%</strong>
+                  </div>
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 62%"></div>
+                  </div>
+                  <small class="text-muted">Last practiced: 2 weeks ago</small>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center mt-4">
+              <button class="btn btn-primary">
+                <i class="fas fa-download me-2"></i> Download Full Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Students</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Assignments</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Progress</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Past Questions</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Guides</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Chart Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Performance Trend Chart
+      const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+      const performanceChart = new Chart(performanceCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+          datasets: [{
+            label: 'Your Scores',
+            data: [65, 68, 72, 75, 74, 78, 80, 82, 81, 83, 85],
+            borderColor: '#1E90FF',
+            backgroundColor: 'rgba(30, 144, 255, 0.1)',
+            tension: 0.3,
+            fill: true
+          }, {
+            label: 'Class Average',
+            data: [60, 62, 65, 67, 68, 70, 72, 73, 75, 76, 78],
+            borderColor: '#FF7F50',
+            backgroundColor: 'rgba(255, 127, 80, 0.1)',
+            tension: 0.3,
+            fill: true,
+            borderDash: [5, 5]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 50,
+              max: 100
+            }
+          }
+        }
+      });
+      
+      // Topic Mastery Chart
+      const masteryCtx = document.getElementById('masteryChart').getContext('2d');
+      const masteryChart = new Chart(masteryCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Algebra', 'Geometry', 'Trigonometry', 'Statistics', 'Number Theory'],
+          datasets: [{
+            label: 'Mastery Level',
+            data: [85, 78, 72, 62, 91],
+            backgroundColor: [
+              'rgba(30, 144, 255, 0.7)',
+              'rgba(30, 144, 255, 0.7)',
+              'rgba(255, 193, 7, 0.7)',
+              'rgba(220, 53, 69, 0.7)',
+              'rgba(30, 144, 255, 0.7)'
+            ],
+            borderColor: [
+              '#1E90FF',
+              '#1E90FF',
+              '#FFC107',
+              '#DC3545',
+              '#1E90FF'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Lesson | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Lesson Content */
+    .lesson-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+      position: relative;
+      min-height: 70vh;
+    }
+    
+    .lesson-header {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .lesson-progress {
+      height: 6px;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      margin-bottom: 1rem;
+    }
+    
+    .lesson-progress-bar {
+      height: 100%;
+      border-radius: 3px;
+      background-color: var(--primary-blue);
+      width: 45%;
+    }
+    
+    /* AI Assistant */
+    .ai-assistant {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    
+    .ai-assistant:hover {
+      transform: scale(1.1);
+    }
+    
+    .ai-assistant.active {
+      transform: scale(1.1);
+      background-color: var(--accent-orange);
+    }
+    
+    .ai-assistant.listening {
+      animation: pulse 1.5s infinite;
+      background-color: var(--accent-orange);
+    }
+    
+    .ai-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      max-height: 60vh;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      padding: 1.5rem;
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+    }
+    
+    .ai-panel.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .ai-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .ai-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-right: 10px;
+    }
+    
+    .ai-messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 0.5rem 0;
+      margin-bottom: 1rem;
+    }
+    
+    .ai-message {
+      margin-bottom: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+    
+    .ai-message.user {
+      background-color: #f0f0f0;
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+    }
+    
+    .ai-message.bot {
+      background-color: rgba(30, 144, 255, 0.1);
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+    }
+    
+    .ai-input-container {
+      display: flex;
+      margin-top: 0.5rem;
+    }
+    
+    .ai-input {
+      flex-grow: 1;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      outline: none;
+    }
+    
+    .ai-send-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .voice-btn {
+      background-color: var(--accent-orange);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .voice-btn.listening {
+      animation: pulse 1.5s infinite;
+    }
+    
+    /* Lesson Content Styles */
+    .math-concept {
+      background-color: rgba(30, 144, 255, 0.05);
+      border-left: 4px solid var(--primary-blue);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .math-example {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .math-formula {
+      font-family: "Times New Roman", serif;
+      font-size: 1.2rem;
+      background-color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: 1px dashed #ccc;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .ai-panel {
+        width: 300px;
+        right: 15px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .ai-panel {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Kwame
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3">
+        <div class="card dashboard-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="student-avatar.jpg" class="rounded-circle me-3" width="60" height="60" alt="Student">
+              <div>
+                <h5 class="mb-0">Kwame Mensah</h5>
+                <small class="text-muted">JHS 3 Student</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="lessons.html">
+                  <i class="fas fa-book"></i> My Lessons
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="assignments.html">
+                  <i class="fas fa-clipboard-check"></i> Assignments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="progress.html">
+                  <i class="fas fa-chart-line"></i> Progress Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="waec-prep.html">
+                  <i class="fas fa-question-circle"></i> WAEC Prep
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="settings.html">
+                  <i class="fas fa-cog"></i> Account Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="lesson-container">
+          <div class="lesson-header">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h2>Linear Equations</h2>
+              <span class="badge bg-primary">Algebra</span>
+            </div>
+            <p class="text-muted">Understanding how to solve equations with one variable</p>
+            
+            <div class="lesson-progress">
+              <div class="lesson-progress-bar" style="width: 65%"></div>
+            </div>
+            <small class="text-muted">65% completed • Estimated time remaining: 20 minutes</small>
+          </div>
+          
+          <div class="lesson-content">
+            <h4 class="mt-4">Introduction to Linear Equations</h4>
+            <p>A linear equation is an equation for a straight line that can be written in the form:</p>
+            
+            <div class="math-formula">
+              ax + b = 0
+            </div>
+            
+            <p>Where:</p>
+            <ul class="math-concept">
+              <li><strong>x</strong> is the variable</li>
+              <li><strong>a</strong> and <strong>b</strong> are constants</li>
+              <li><strong>a</strong> cannot be zero</li>
+            </ul>
+            
+            <h4 class="mt-5">Solving Linear Equations</h4>
+            <p>To solve a linear equation, we isolate the variable on one side of the equation using inverse operations.</p>
+            
+            <div class="math-example">
+              <h5>Example 1:</h5>
+              <p>Solve for x: 2x + 3 = 7</p>
+              <p><strong>Solution:</strong></p>
+              <p>1. Subtract 3 from both sides: 2x = 7 - 3</p>
+              <p>2. Simplify: 2x = 4</p>
+              <p>3. Divide both sides by 2: x = 4 ÷ 2</p>
+              <p>4. Final answer: x = 2</p>
+            </div>
+            
+            <h4 class="mt-5">Checking Your Solution</h4>
+            <p>Always verify your solution by substituting it back into the original equation.</p>
+            
+            <div class="math-example">
+              <h5>Example 2:</h5>
+              <p>Check if x = 3 is a solution to 5x - 2 = 13</p>
+              <p><strong>Solution:</strong></p>
+              <p>1. Substitute x = 3: 5(3) - 2 = 15 - 2 = 13</p>
+              <p>2. Compare to right side: 13 = 13 ✓</p>
+              <p>3. Conclusion: x = 3 is indeed a solution</p>
+            </div>
+            
+            <h4 class="mt-5">Practice Exercise</h4>
+            <div class="math-concept">
+              <p><strong>Question 1:</strong> Solve for x: 3x - 5 = 10</p>
+              <button class="btn btn-sm btn-outline-primary mt-2" onclick="showAnswer(1)">Show Answer</button>
+              <div id="answer1" style="display: none;" class="mt-2">
+                <p>1. Add 5 to both sides: 3x = 10 + 5</p>
+                <p>2. Simplify: 3x = 15</p>
+                <p>3. Divide both sides by 3: x = 15 ÷ 3</p>
+                <p>4. Final answer: x = 5</p>
+              </div>
+            </div>
+            
+            <div class="math-concept mt-3">
+              <p><strong>Question 2:</strong> Solve for y: 2(y + 3) = 16</p>
+              <button class="btn btn-sm btn-outline-primary mt-2" onclick="showAnswer(2)">Show Answer</button>
+              <div id="answer2" style="display: none;" class="mt-2">
+                <p>1. Divide both sides by 2: y + 3 = 8</p>
+                <p>2. Subtract 3 from both sides: y = 8 - 3</p>
+                <p>3. Final answer: y = 5</p>
+              </div>
+            </div>
+            
+            <div class="d-flex justify-content-between mt-5">
+              <a href="#" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i> Previous Lesson
+              </a>
+              <a href="#" class="btn btn-primary">
+                Next Lesson <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Assistant -->
+  <div class="ai-assistant" id="aiAssistant">
+    <i class="fas fa-robot"></i>
+  </div>
+  
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-header">
+      <div class="ai-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div>
+        <h5 class="mb-0">EduMath AI Tutor</h5>
+        <small class="text-muted">Tap the mic to ask questions</small>
+      </div>
+    </div>
+    
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message bot">
+        Hello! I'm your AI math tutor. I can help explain linear equations.
+      </div>
+      <div class="ai-message bot">
+        Try asking: "How do I solve 2x + 5 = 11?" or "What is a linear equation?"
+      </div>
+    </div>
+    
+    <div class="ai-input-container">
+      <input type="text" class="ai-input" id="aiInput" placeholder="Type your question...">
+      <button class="ai-send-btn" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <button class="voice-btn" id="voiceBtn">
+        <i class="fas fa-microphone"></i>
+      </button>
+    </div>
+    <button class="btn btn-sm btn-outline-primary mt-2" id="explainPageBtn">
+      <i class="fas fa-lightbulb me-1"></i> Explain this lesson
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Students</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Assignments</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Progress</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Past Questions</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Guides</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Web Speech API for voice interaction -->
+  <script>
+    // Show/hide answers
+    function showAnswer(num) {
+      const answer = document.getElementById(`answer${num}`);
+      answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    // AI Assistant Functionality
+    const aiAssistant = document.getElementById('aiAssistant');
+    const aiPanel = document.getElementById('aiPanel');
+    const aiMessages = document.getElementById('aiMessages');
+    const aiInput = document.getElementById('aiInput');
+    const aiSend = document.getElementById('aiSend');
+    const voiceBtn = document.getElementById('voiceBtn');
+    const explainPageBtn = document.getElementById('explainPageBtn');
+    
+    // Speech recognition setup
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    let isProcessing = false;
+    
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-GH';
+      
+      recognition.onstart = function() {
+        voiceBtn.classList.add('listening');
+        aiAssistant.classList.add('listening');
+        addMessage("Listening...", 'bot');
+      };
+      
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        aiInput.value = transcript;
+        handleUserQuestion(transcript);
+      };
+      
+      recognition.onerror = function(event) {
+        console.error('Speech recognition error', event.error);
+        addMessage("Sorry, I didn't catch that. Please try again.", 'bot');
+        voiceBtn.classList.remove('listening');
+        aiAssistant.classList.remove('listening');
+        isProcessing = false;
+      };
+      
+      recognition.onend = function() {
+        voiceBtn.classList.remove('listening');
+        aiAssistant.classList.remove('listening');
+      };
+    } else {
+      voiceBtn.style.display = 'none';
+      addMessage("Voice commands not supported in your browser", 'bot');
+    }
+    
+    // Toggle AI Panel
+    aiAssistant.addEventListener('click', function() {
+      this.classList.toggle('active');
+      aiPanel.classList.toggle('active');
+      
+      if (aiPanel.classList.contains('active') && aiMessages.children.length <= 2) {
+        setTimeout(() => {
+          addMessage("I noticed you're learning about linear equations. Would you like me to explain anything?", 'bot');
+        }, 500);
+      }
+    });
+    
+    // Voice button handler
+    voiceBtn.addEventListener('click', function() {
+      if (recognition && !isProcessing) {
+        recognition.start();
+      }
+    });
+    
+    // Send message handler
+    function sendMessage() {
+      const message = aiInput.value.trim();
+      if (message && !isProcessing) {
+        handleUserQuestion(message);
+        aiInput.value = '';
+      }
+    }
+    
+    // Handle user questions
+    async function handleUserQuestion(question) {
+      if (isProcessing) return;
+      isProcessing = true;
+      
+      addMessage(question, 'user');
+      const loadingMsg = addMessage("Thinking...", 'bot');
+      
+      try {
+        const response = await generateAIResponse(question);
+        aiMessages.removeChild(loadingMsg);
+        speakResponse(response);
+        addMessage(response, 'bot');
+      } catch (error) {
+        aiMessages.removeChild(loadingMsg);
+        console.error('Error:', error);
+        const errorMsg = error.message.includes('Failed to fetch') 
+          ? "Unable to connect to the server. Please check your internet connection."
+          : "Sorry, I'm having trouble answering that. Please try again later.";
+        addMessage(errorMsg, 'bot');
+      } finally {
+        isProcessing = false;
+      }
+    }
+    
+    // Text-to-speech function
+    function speakResponse(text) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+    
+    // Get page content for explanations
+    function getPageContent() {
+      return {
+        title: document.querySelector('.lesson-header h2').textContent,
+        formulas: Array.from(document.querySelectorAll('.math-formula')).map(el => el.textContent),
+        examples: Array.from(document.querySelectorAll('.math-example')).map(el => el.textContent)
+      };
+    }
+    
+    // AI Response Generator with timeout
+    async function generateAIResponse(question) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+      
+      try {
+        const isEquation = /\d+[xX]\s*[+-]/.test(question);
+        const endpoint = isEquation ? '/solve' : '/explain';
+        
+        const response = await fetch(`http://localhost:5000${endpoint}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            [isEquation ? 'equation' : 'query']: question
+          }),
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        
+        return data.response;
+      } catch (error) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+          throw new Error("Request timed out. Please try again.");
+        }
+        throw error;
+      }
+    }
+
+    // Enhanced lesson explanation handler
+    explainPageBtn.addEventListener('click', async function() {
+      if (isProcessing) return;
+      isProcessing = true;
+      
+      addMessage("Can you explain this lesson to me?", 'user');
+      const loadingMsg = addMessage("Preparing lesson explanation...", 'bot');
+      
+      try {
+        const pageContent = getPageContent();
+        const prompt = `Explain this lesson about ${pageContent.title} focusing on:
+- Key concepts: ${pageContent.formulas.join(', ')}
+- Practical examples
+- Common mistakes
+- How it applies in Ghanaian context`;
+        
+        const response = await fetch('http://localhost:5000/explain', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ query: prompt })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        aiMessages.removeChild(loadingMsg);
+        speakResponse(data.response);
+        addMessage(data.response, 'bot');
+      } catch (error) {
+        aiMessages.removeChild(loadingMsg);
+        console.error('Explanation error:', error);
+        addMessage("Couldn't retrieve explanation. The AI service may be unavailable.", 'bot');
+      } finally {
+        isProcessing = false;
+      }
+    });
+    
+    // Handle send button click
+    aiSend.addEventListener('click', sendMessage);
+    
+    // Handle Enter key
+    aiInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !isProcessing) {
+        sendMessage();
+      }
+    });
+    
+    // Add message to chat
+    function addMessage(text, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('ai-message', sender);
+      messageDiv.textContent = text;
+      aiMessages.appendChild(messageDiv);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+      return messageDiv;
+    }
+    
+    // Initial greeting
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        if (aiPanel.classList.contains('active')) {
+          addMessage("Welcome to your linear equations lesson! How can I help you today?", 'bot');
+        }
+      }, 1500);
+    });
+</script>
+</body>
+</html>

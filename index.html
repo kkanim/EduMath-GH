@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduMath GH | WAEC-Aligned Maths Tutoring for Ghanaian Schools</title>
+  <meta name="description" content="Personalized online maths tutoring for Ghanaian schools, aligned with WAEC and GES curriculum standards">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Colours -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF; /* new primary */
+      --accent-orange: #FF7F50; /* accent colour */
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    /* Hero background image overlay using new colours */
+    .hero {
+      background: linear-gradient(rgba(30,144,255,0.7), rgba(30,144,255,0.7)), url('ghana-classroom.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Header with Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="Schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="signup.html">Get Started</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero py-5" id="home">
+    <div class="container text-center">
+      <h1 class="display-5 fw-bold">WAEC-Aligned Maths Tutoring for Ghanaian Students</h1>
+      <p class="lead">Personalized online tutoring designed specifically for Ghana's curriculum needs</p>
+      <div class="d-flex justify-content-center gap-3 my-4 flex-wrap">
+        <img src="waec-certified.svg" alt="WAEC Certified" class="img-fluid" style="height:60px;">
+        <img src="ges-approved.svg" alt="GES Approved" class="img-fluid" style="height:60px;">
+      </div>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#" class="btn btn-primary">Request School Demo</a>
+        <a href="#" class="btn btn-outline-primary">View Programmes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Designed for Ghanaian Education</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-graduation-cap fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">BECE &amp; WASSCE Preparation</h5>
+              <p class="card-text">Comprehensive coverage of exam topics with practice using past WAEC questions and marking schemes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-calculator fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">Localized Content</h5>
+              <p class="card-text">Math problems using Ghanaian contexts, local currency (GH₵), and real-world scenarios relevant to Ghana.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-chart-line fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">Progress Tracking</h5>
+              <p class="card-text">Real-time dashboards for teachers and administrators to monitor student performance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-users fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">Qualified Tutors</h5>
+              <p class="card-text">Our tutors are Ghanaian educators trained in the national curriculum and pedagogy.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-mobile-alt fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">Mobile Friendly</h5>
+              <p class="card-text">Works on smartphones, tablets and computers - perfect for schools with limited devices.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-money-bill-wave fa-2x" style="color: var(--primary-blue);"></i>
+              <h5 class="card-title mt-3">Affordable Pricing</h5>
+              <p class="card-text">Cost-effective solutions designed for Ghanaian school budgets with flexible payment options.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Trusted by Ghanaian Schools</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <p class="fst-italic">"Our BECE maths pass rate improved from 65% to 92% after one year with EduMath GH. The WAEC-aligned content made all the difference."</p>
+              <p class="fw-bold text-primary mb-0">Mr. Kwame Asante</p>
+              <small class="text-muted">Headmaster, Accra Academy</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <p class="fst-italic">"The Ghanaian context in the math problems helps our students relate better to the concepts. Engagement has never been higher."</p>
+              <p class="fw-bold text-primary mb-0">Ms. Ama Mensah</p>
+              <small class="text-muted">Maths Teacher, Kumasi High School</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <p class="fst-italic">"As a rural school with limited resources, EduMath GH's mobile-friendly platform has been a game-changer for our students."</p>
+              <p class="fw-bold text-primary mb-0">Mr. Yaw Boateng</p>
+              <small class="text-muted">Director, Tamale STEM Academy</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-5" style="background: var(--primary-blue); color: #fff;">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Impact in Ghana</h2>
+      <div class="row text-center g-4">
+        <div class="col-md-3">
+          <h3 class="display-5">50+</h3>
+          <p>Schools Nationwide</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="display-5">93%</h3>
+          <p>BECE Pass Rate Improvement</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="display-5">5,000+</h3>
+          <p>Students Supported</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="display-5">GH₵</h3>
+          <p>Affordable for Schools</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="mb-4" style="color: var(--primary-blue);">Ready to Transform Your School's Maths Performance?</h2>
+      <p class="mb-4">Join hundreds of Ghanaian schools using EduMath GH to boost their students' results.</p>
+      <a href="#" class="btn btn-primary btn-lg">Get Started Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Programmes</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Primary School (BECE Prep)</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Junior High School</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Senior High School (WASSCE)</a></li>
+            <li><a href="#" class="text-white text-decoration-none

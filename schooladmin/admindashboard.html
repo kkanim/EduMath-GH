@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School Admin | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Dashboard Navigation */
+    .admin-nav {
+      position: sticky;
+      top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .admin-nav .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .admin-nav .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .admin-nav .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .admin-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    /* Cards */
+    .stat-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Progress Bars */
+    .progress {
+      height: 8px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+    }
+    
+    .progress-bar {
+      background-color: var(--primary-blue);
+    }
+    
+    /* Badges */
+    .badge-primary {
+      background-color: var(--primary-blue);
+    }
+    
+    /* List Groups */
+    .list-group-item.active-topic {
+      border-left: 4px solid var(--accent-orange);
+      background-color: rgba(255, 127, 80, 0.05);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .admin-nav {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+    
+    .student-progress {
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Admin
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-cog me-2"></i>Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Admin Sidebar -->
+      <div class="col-lg-3">
+        <div class="card admin-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="school-logo.jpg" class="rounded-circle me-3" width="60" height="60" alt="School Logo">
+              <div>
+                <h5 class="mb-0">Accra Academy</h5>
+                <small class="text-muted">Admin Portal</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-users me-2"></i> Students
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-chalkboard-teacher me-2"></i> Teachers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-book me-2"></i> Classes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-chart-line me-2"></i> Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-cog me-2"></i> School Settings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-file-invoice-dollar me-2"></i> Billing
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h2 class="mb-2">School Dashboard</h2>
+            <p class="lead text-muted">Accra Academy - Term 2, 2023/2024</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <button class="btn btn-primary">
+              <i class="fas fa-download me-2"></i>Export Reports
+            </button>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+          <div class="col-md-3">
+            <div class="card stat-card shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Active Students</h6>
+                    <h3>247</h3>
+                  </div>
+                  <div class="bg-primary bg-opacity-10 p-3 rounded">
+                    <i class="fas fa-user-graduate text-primary"></i>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 92%"></div>
+                </div>
+                <small class="text-muted">92% active this week</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="card stat-card shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Avg. Progress</h6>
+                    <h3>68%</h3>
+                  </div>
+                  <div class="bg-warning bg-opacity-10 p-3 rounded">
+                    <i class="fas fa-chart-line text-warning"></i>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 68%"></div>
+                </div>
+                <small class="text-muted">+12% since last term</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="card stat-card shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">BECE Readiness</h6>
+                    <h3>74%</h3>
+                  </div>
+                  <div class="bg-info bg-opacity-10 p-3 rounded">
+                    <i class="fas fa-graduation-cap text-info"></i>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 74%"></div>
+                </div>
+                <small class="text-muted">On track for 85% pass rate</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="card stat-card shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Teacher Usage</h6>
+                    <h3>86%</h3>
+                  </div>
+                  <div class="bg-success bg-opacity-10 p-3 rounded">
+                    <i class="fas fa-chalkboard-teacher text-success"></i>
+                  </div>
+                </div>
+                <div class="progress mt-2">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 86%"></div>
+                </div>
+                <small class="text-muted">12/14 teachers active</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Progress Charts -->
+        <div class="row mb-4">
+          <div class="col-md-8">
+            <div class="card stat-card shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title">Class Performance Overview</h5>
+                <div class="student-progress">
+                  <!-- This would be a chart in production (Chart.js, etc.) -->
+                  <img src="performance-chart-placeholder.jpg" class="img-fluid mt-3" alt="Performance Chart">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card stat-card shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title">Focus Areas</h5>
+                <div class="mb-4">
+                  <h6>Top Performing Topics</h6>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Number Bases
+                      <span class="badge bg-success rounded-pill">92%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Fractions
+                      <span class="badge bg-success rounded-pill">88%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Basic Algebra
+                      <span class="badge bg-success rounded-pill">85%</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h6>Needing Improvement</h6>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center active-topic">
+                      Word Problems
+                      <span class="badge bg-danger rounded-pill">52%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Geometry Proofs
+                      <span class="badge bg-warning rounded-pill">65%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Probability
+                      <span class="badge bg-warning rounded-pill">68%</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card stat-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="card-title mb-0">Recent Student Activity</h5>
+                  <a href="#" class="small">View All</a>
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <h6 class="mb-0">Ama Serwaa</h6>
+                        <small>Completed Geometry Assessment</small>
+                      </div>
+                      <div class="text-end">
+                        <span class="badge bg-success rounded-pill">94%</span>
+                        <div class="text-muted small">Today</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <h6 class="mb-0">Kwesi Andoh</h6>
+                        <small>Submitted Algebra Assignment</small>
+                      </div>
+                      <div class="text-end">
+                        <span class="badge bg-warning rounded-pill">68%</span>
+                        <div class="text-muted small">Yesterday</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <h6 class="mb-0">Efia Osei</h6>
+                        <small>Asked question on Fractions</small>
+                      </div>
+                      <div class="text-end">
+                        <div class="text-muted small">2 days ago</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card stat-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="card-title mb-0">Teacher Updates</h5>
+                  <a href="#" class="small">View All</a>
+                </div>
+                <div class="list-group list-group-flush">
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex">
+                      <img src="teacher1.jpg" class="rounded-circle me-3" width="40" height="40" alt="Teacher">
+                      <div>
+                        <h6 class="mb-0">Mr. Owusu</h6>
+                        <small>Assigned new Geometry lesson to JHS 2A</small>
+                        <div class="text-muted small">Today 10:45 AM</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex">
+                      <img src="teacher2.jpg" class="rounded-circle me-3" width="40" height="40" alt="Teacher">
+                      <div>
+                        <h6 class="mb-0">Ms. Asante</h6>
+                        <small>Posted feedback on Algebra tests</small>
+                        <div class="text-muted small">Yesterday 3:30 PM</div>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex">
+                      <img src="teacher3.jpg" class="rounded-circle me-3" width="40" height="40" alt="Teacher">
+                      <div>
+                        <h6 class="mb-0">Mr. Agyeman</h6>
+                        <small>Scheduled extra class on Word Problems</small>
+                        <div class="text-muted small">Mon 8:00 AM</div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Schools</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Students</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Teachers</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Reports</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Teaching Guides</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Plans</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Admin dashboard scripts would go here
+  </script>
+</body>
+</html>

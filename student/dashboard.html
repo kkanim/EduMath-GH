@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Dashboard | EduMath GH</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+    
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    
+    /* Dashboard Navigation */
+    .dashboard-nav {
+      position: sticky;
+      top: 80px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    
+    .dashboard-nav .nav-link {
+      color: var(--text-dark);
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 0.25rem;
+      transition: all 0.3s;
+    }
+    
+    .dashboard-nav .nav-link:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link.active {
+      background-color: rgba(30, 144, 255, 0.1);
+      color: var(--primary-blue);
+      font-weight: 600;
+      border-left: 3px solid var(--primary-blue);
+    }
+    
+    .dashboard-nav .nav-link i {
+      width: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+    
+    /* Progress Ring */
+    .progress-ring {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+    }
+    
+    .progress-ring__track {
+      stroke: #f0f0f0;
+      stroke-width: 10;
+      fill: transparent;
+    }
+    
+    .progress-ring__circle {
+      stroke: var(--primary-blue);
+      stroke-width: 10;
+      stroke-linecap: round;
+      fill: transparent;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+    
+    .progress-ring__text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+    }
+    
+    /* Cards */
+    .dashboard-card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .dashboard-card .card-body {
+      padding: 1.5rem;
+    }
+    
+    /* Active Topic */
+    .active-topic {
+      border-left: 4px solid var(--accent-orange);
+      background-color: rgba(255, 127, 80, 0.05);
+    }
+    
+    /* Quick Actions */
+    .quick-action-btn {
+      border: 1px solid rgba(30, 144, 255, 0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s;
+      height: 100%;
+    }
+    
+    .quick-action-btn:hover {
+      background-color: rgba(30, 144, 255, 0.1);
+      border-color: var(--primary-blue);
+    }
+    
+    .quick-action-btn i {
+      font-size: 2rem;
+      color: var(--primary-blue);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Badges */
+    .badge-primary {
+      background-color: var(--primary-blue);
+    }
+    
+    /* Progress Bars */
+    .progress {
+      height: 8px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+    }
+    
+    .progress-bar {
+      background-color: var(--primary-blue);
+    }
+    
+    /* Alerts */
+    .alert-warning {
+      background-color: rgba(255, 193, 7, 0.1);
+      border-color: rgba(255, 193, 7, 0.2);
+      color: #856404;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .dashboard-nav {
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> Kwame
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-3">
+        <div class="card dashboard-nav shadow-sm">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4">
+              <img src="student-avatar.jpg" class="rounded-circle me-3" width="60" height="60" alt="Student">
+              <div>
+                <h5 class="mb-0">Kwame Mensah</h5>
+                <small class="text-muted">JHS 3 Student</small>
+              </div>
+            </div>
+            
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="dashboard.html">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="My Lessons.html">
+                  <i class="fas fa-book"></i> My Lessons
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Assignments.html">
+                  <i class="fas fa-clipboard-check"></i> Assignments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="progress.html">
+                  <i class="fas fa-chart-line"></i> Progress Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="waec-prep.html">
+                  <i class="fas fa-question-circle"></i> WAEC Prep
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="settings.html">
+                  <i class="fas fa-cog"></i> Account Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-9">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <h2 class="mb-2">Welcome Back, Kwame!</h2>
+            <p class="lead text-muted">Ready for today's maths session?</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <span class="badge bg-primary rounded-pill px-3 py-2">BECE Candidate 2024</span>
+          </div>
+        </div>
+        
+        <!-- Progress Summary -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body text-center">
+                <div class="progress-ring mb-3">
+                  <svg width="120" height="120">
+                    <circle class="progress-ring__track" r="50" cx="60" cy="60"/>
+                    <circle class="progress-ring__circle" r="50" cx="60" cy="60" stroke-dasharray="314" stroke-dashoffset="125.6"/>
+                  </svg>
+                  <div class="progress-ring__text">
+                    <h3 class="mb-0">60%</h3>
+                  </div>
+                </div>
+                <h5>Overall Mastery</h5>
+                <p class="text-muted mb-0">You're 60% through the syllabus</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Current Focus</h5>
+                <div class="d-flex align-items-center mb-3">
+                  <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                    <i class="fas fa-shapes fa-2x text-primary"></i>
+                  </div>
+                  <div>
+                    <h6 class="mb-0">Geometry</h6>
+                    <small class="text-muted">Angles &amp; Shapes</small>
+                  </div>
+                </div>
+                <div class="progress mb-2">
+                  <div class="progress-bar" role="progressbar" style="width: 45%"></div>
+                </div>
+                <small class="text-muted">45% mastered</small>
+                
+                <a href="#" class="btn btn-sm btn-outline-primary mt-3 w-100">
+                  <i class="fas fa-play me-1"></i> Continue Lesson
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card dashboard-card">
+              <div class="card-body">
+                <h5 class="card-title mb-3">WAEC Readiness</h5>
+                <div class="d-flex align-items-center mb-3">
+                  <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                    <i class="fas fa-graduation-cap fa-2x text-warning"></i>
+                  </div>
+                  <div>
+                    <h6 class="mb-0">Practice Test Score</h6>
+                    <small class="text-muted">Last attempt: 72%</small>
+                  </div>
+                </div>
+                <div class="alert alert-warning mb-3">
+                  <i class="fas fa-info-circle me-2"></i>
+                  Focus on Algebra (score: 65%)
+                </div>
+                <a href="#" class="btn btn-sm btn-outline-warning w-100">
+                  <i class="fas fa-redo me-1"></i> Take New Test
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="card dashboard-card">
+              <div class="card-body">
+                <h5 class="card-title mb-4">Quick Actions</h5>
+                <div class="row g-3">
+                  <div class="col-md-3 col-6">
+                    <a href="#" class="quick-action-btn d-block">
+                      <i class="fas fa-play-circle"></i>
+                      <h6 class="mb-0">Continue Learning</h6>
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <a href="#" class="quick-action-btn d-block">
+                      <i class="fas fa-question-circle"></i>
+                      <h6 class="mb-0">Ask a Tutor</h6>
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <a href="#" class="quick-action-btn d-block">
+                      <i class="fas fa-file-alt"></i>
+                      <h6 class="mb-0">Past Questions</h6>
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-6">
+                    <a href="#" class="quick-action-btn d-block">
+                      <i class="fas fa-chart-pie"></i>
+                      <h6 class="mb-0">View Progress</h6>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Upcoming Topics & Recent Activity -->
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card dashboard-card h-100">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Upcoming Topics</h5>
+                <div class="list-group list-group-flush">
+                  <a href="#" class="list-group-item list-group-item-action active-topic">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h6 class="mb-1">Angles in Polygons</h6>
+                        <small class="text-muted">Geometry • 45 min</small>
+                      </div>
+                      <span class="badge bg-primary rounded-pill">Today</span>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h6 class="mb-1">Quadratic Equations</h6>
+                        <small class="text-muted">Algebra • 1 hr</small>
+                      </div>
+                      <span class="badge bg-secondary rounded-pill">Tomorrow</span>
+                    </div>
+                  </a>
+                  <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h6 class="mb-1">Probability</h6>
+                        <small class="text-muted">Statistics • 30 min</small>
+                      </div>
+                      <span class="badge bg-secondary rounded-pill">Wed</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card dashboard-card h-100">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Recent Activity</h5>
+                <div class="list-group list-group-flush">
+                  <div class="list-group-item">
+                    <div class="d-flex">
+                      <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                        <i class="fas fa-check text-primary"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0">Completed: Linear Equations</h6>
+                        <small class="text-muted">Yesterday • Score: 85%</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="d-flex">
+                      <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
+                        <i class="fas fa-exclamation text-warning"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0">Needs Review: Factorization</h6>
+                        <small class="text-muted">2 days ago • Score: 65%</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="d-flex">
+                      <div class="bg-success bg-opacity-10 p-2 rounded me-3">
+                        <i class="fas fa-award text-success"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0">Achievement: Geometry Pro</h6>
+                        <small class="text-muted">3 days ago</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Students</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Dashboard</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Assignments</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Progress</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Resources</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">WAEC Syllabus</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Past Questions</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Video Lessons</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Study Guides</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am - 5pm</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Script -->
+  <script>
+    // Animate progress rings
+    document.addEventListener('DOMContentLoaded', function() {
+      const circles = document.querySelectorAll('.progress-ring__circle');
+      circles.forEach(circle => {
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        const percentage = parseInt(circle.parentElement.parentElement.querySelector('h3').textContent);
+        const offset = circumference - (percentage / 100 * circumference);
+        
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
+        
+        setTimeout(() => {
+          circle.style.strokeDashoffset = offset;
+        }, 200);
+      });
+    });
+  </script>
+</body>
+</html>

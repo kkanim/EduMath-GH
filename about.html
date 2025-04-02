@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | EduMath GH</title>
+  <meta name="description" content="Learn about EduMath GH - WAEC-aligned maths education for Ghanaian students">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    .mission-card {
+      border-left: 4px solid var(--accent-orange);
+      transition: all 0.3s;
+    }
+    .mission-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .team-member {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .team-member img {
+      transition: transform 0.5s;
+    }
+    .team-member:hover img {
+      transform: scale(1.05);
+    }
+    .team-overlay {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      background: rgba(30,144,255,0.9);
+      color: white;
+      padding: 1rem;
+      transition: bottom 0.3s;
+    }
+    .team-member:hover .team-overlay {
+      bottom: 0;
+    }
+    .ghana-map-bg {
+      background: url('ghana-map-outline.svg') no-repeat center center;
+      background-size: contain;
+      opacity: 0.05;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+            <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="Schools.html">For Schools</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="contact.html">Get Started</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="py-5 text-white position-relative" style="background: linear-gradient(rgba(30,144,255,0.9), rgba(30,144,255,0.9)), url('ghana-classroom-2.jpg'); background-size: cover;">
+    <div class="ghana-map-bg"></div>
+    <div class="container text-center position-relative" style="z-index: 1;">
+      <h1 class="display-5 fw-bold">Our Ghanaian Education Story</h1>
+      <p class="lead">Empowering students through WAEC-aligned maths education</p>
+    </div>
+  </section>
+
+  <!-- Our Mission -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 style="color: var(--primary-blue);">Our Mission</h2>
+          <p class="lead">To transform maths education in Ghana through technology and culturally relevant teaching methods.</p>
+          <p>Founded in Accra in 2018, EduMath GH was created by Ghanaian educators who recognized the need for high-quality, locally relevant maths resources aligned with WAEC standards.</p>
+          <p>We believe every Ghanaian student deserves access to excellent maths instruction, regardless of their school's location or resources.</p>
+          <div class="d-flex align-items-center mt-4">
+            <img src="waec-certified.svg" alt="WAEC Certified" height="50" class="me-3">
+            <img src="ges-approved.svg" alt="GES Approved" height="50">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 mission-card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                      <i class="fas fa-bullseye fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="mb-0">Our Vision</h5>
+                  </div>
+                  <p>To become Ghana's most trusted maths education partner, helping schools nationwide achieve 95%+ pass rates in WAEC exams.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 mission-card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                      <i class="fas fa-hand-holding-heart fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="mb-0">Our Values</h5>
+                  </div>
+                  <p>Quality, Relevance, Accessibility, and Excellence in everything we do for Ghanaian education.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 mission-card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                      <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="mb-0">Our Reach</h5>
+                  </div>
+                  <p>Currently serving schools in all 16 regions of Ghana, with special programs for rural communities.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card h-100 mission-card shadow-sm">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                      <i class="fas fa-chart-line fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="mb-0">Our Impact</h5>
+                  </div>
+                  <p>Over 5,000 students supported with average score improvements of 25% in national exams.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Our Story</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <div class="row">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                  <img src="founder.jpg" alt="EduMath GH Founder" class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px; object-fit: cover;">
+                  <h5>Kwame Osei</h5>
+                  <p class="text-muted">Founder & CEO</p>
+                </div>
+                <div class="col-md-8">
+                  <p>"As a former maths teacher in Kumasi, I saw firsthand how students struggled with concepts that weren't taught in Ghanaian context. The 'If 5 oranges cost $1...' problems in foreign textbooks didn't resonate with our students."</p>
+                  <p>After completing my Masters in Education Technology, I gathered a team of Ghanaian curriculum experts and developers to create EduMath GH in 2018. We started with just 3 schools in Ashanti Region, and through word-of-mouth from teachers seeing real results, we've grown to serve schools nationwide.</p>
+                  <p>What makes us different is our unwavering focus on the Ghanaian educational context - from our GH₵-based word problems to our WAEC exam preparation strategies. We're not just another e-learning platform - we're a movement to transform maths education in Ghana."</p>
+                  <div class="d-flex align-items-center mt-4">
+                    <i class="fas fa-quote-left fa-2x text-primary me-3"></i>
+                    <h5 class="mb-0" style="color: var(--accent-orange);">Made in Ghana, for Ghana</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Team -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Meet Our Team</h2>
+      <p class="lead text-center mb-5">Ghanaian educators and technologists passionate about maths education</p>
+      
+      <div class="row g-4">
+        <!-- Team Member 1 -->
+        <div class="col-md-4">
+          <div class="team-member shadow-sm">
+            <img src="team1.jpg" alt="Curriculum Director" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+            <div class="team-overlay">
+              <h5 class="mb-1">Dr. Ama Mensah</h5>
+              <p class="small mb-2">Curriculum Director</p>
+              <p class="small">Former WAEC examiner with 15 years experience in maths education</p>
+              <div class="d-flex justify-content-center">
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="col-md-4">
+          <div class="team-member shadow-sm">
+            <img src="team2.jpg" alt="Head of Tutoring" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+            <div class="team-overlay">
+              <h5 class="mb-1">Yaw Boateng</h5>
+              <p class="small mb-2">Head of Tutoring</p>
+              <p class="small">National Best Maths Teacher award winner in 2017</p>
+              <div class="d-flex justify-content-center">
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Team Member 3 -->
+        <div class="col-md-4">
+          <div class="team-member shadow-sm">
+            <img src="team3.jpg" alt="Technology Lead" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+            <div class="team-overlay">
+              <h5 class="mb-1">Esi Asante</h5>
+              <p class="small mb-2">Technology Lead</p>
+              <p class="small">Ghanaian software engineer specializing in educational technology</p>
+              <div class="d-flex justify-content-center">
+                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <a href="#" class="btn btn-outline-primary">View Full Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners & Recognition -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--primary-blue);">Our Partners & Recognition</h2>
+      
+      <div class="row g-4 justify-content-center align-items-center">
+        <div class="col-6 col-md-3 text-center">
+          <img src="ges-logo.svg" alt="GES" class="img-fluid" style="height: 70px;">
+        </div>
+        <div class="col-6 col-md-3 text-center">
+          <img src="waec-logo.svg" alt="WAEC" class="img-fluid" style="height: 70px;">
+        </div>
+        <div class="col-6 col-md-3 text-center">
+          <img src="ministry-education-logo.svg" alt="Ministry of Education" class="img-fluid" style="height: 70px;">
+        </div>
+        <div class="col-6 col-md-3 text-center">
+          <img src="ghana-education-award.svg" alt="Ghana Education Award" class="img-fluid" style="height: 70px;">
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <div class="d-inline-flex align-items-center bg-white p-3 rounded shadow-sm">
+          <i class="fas fa-award fa-2x me-3" style="color: var(--accent-orange);"></i>
+          <div class="text-start">
+            <h5 class="mb-0">2023 Best EdTech Startup</h5>
+            <p class="small mb-0">Ghana Education Innovation Awards</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-5 text-white" style="background: var(--primary-blue);">
+    <div class="container text-center">
+      <h2 class="mb-4">Join Our Mission to Transform Maths Education</h2>
+      <p class="lead mb-5">Whether you're a school, teacher, or supporter, there are ways to get involved</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="schools.html" class="btn btn-light btn-lg">For Schools</a>
+        <a href="contact.html" class="btn btn-outline-light btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">About</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Our Story</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Team</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Careers</a></li>
+            <li><a href="#" class="text-white text-decoration-none">News</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Support</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Help Center</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> info@edumathgh.com</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

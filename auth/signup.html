@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up | EduMath GH</title>
+  <meta name="description" content="Create your EduMath GH account to access WAEC-aligned maths resources">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --primary-blue: #1E90FF;
+      --accent-orange: #FF7F50;
+      --text-dark: #343a40;
+      --bg-light: #f8f9fa;
+    }
+    .flag-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-orange) 33%, var(--primary-blue) 33% 66%, var(--accent-orange) 66%);
+    }
+    .signup-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .signup-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .signup-header {
+      background: var(--primary-blue);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .form-control:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 0.25rem rgba(30, 144, 255, 0.25);
+    }
+    .btn-ghana {
+      background: var(--primary-blue);
+      color: white;
+      font-weight: 600;
+    }
+    .btn-ghana:hover {
+      background: #1a7fd9;
+      color: white;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #6c757d;
+      margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .divider::before {
+      margin-right: 1rem;
+    }
+    .divider::after {
+      margin-left: 1rem;
+    }
+    .account-type-btn {
+      border: 2px solid #dee2e6;
+      background: white;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .account-type-btn:hover {
+      border-color: var(--primary-blue);
+    }
+    .account-type-btn.active {
+      border-color: var(--primary-blue);
+      background: rgba(30, 144, 255, 0.05);
+    }
+    .account-type-btn i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-blue);
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- Ghana Flag Top Bar -->
+  <div class="flag-bar"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="edumath-gh-logo.svg" alt="EduMath GH" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="programmes.html">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="schools.html">For Schools</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sign Up Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="signup-container">
+        <div class="signup-card">
+          <!-- Header -->
+          <div class="signup-header">
+            <h3>Create Your Account</h3>
+            <p class="mb-0">Join thousands of Ghanaian students improving in maths</p>
+          </div>
+          
+          <!-- Body -->
+          <div class="card-body p-4 p-md-5 bg-white">
+            <!-- Account Type Selection -->
+            <div class="mb-4">
+              <h5 class="text-center mb-3">I am a:</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="account-type-btn active" onclick="selectAccountType('student')">
+                    <i class="fas fa-user-graduate"></i>
+                    <h5>Student</h5>
+                    <p class="small text-muted">BECE/WASSCE preparation</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="account-type-btn" onclick="selectAccountType('teacher')">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h5>Teacher</h5>
+                    <p class="small text-muted">School educator</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Sign Up Form -->
+            <form id="signupForm">
+              <!-- School Selection (conditional) -->
+              <div class="mb-3" id="schoolField" style="display: none;">
+                <label for="school" class="form-label">School</label>
+                <select class="form-select" id="school">
+                  <option selected disabled>Select your school</option>
+                  <option>Accra Academy</option>
+                  <option>Kumasi High School</option>
+                  <option>Tamale Senior High</option>
+                  <option>Other (please specify)</option>
+                </select>
+              </div>
+              
+              <!-- Name Fields -->
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" required>
+                </div>
+              </div>
+              
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" required>
+              </div>
+              
+              <!-- Phone -->
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <span class="input-group-text">+233</span>
+                  <input type="tel" class="form-control" id="phone" placeholder="24 123 4567" required>
+                </div>
+              </div>
+              
+              <!-- Password -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+                <div class="form-text">At least 8 characters with a number</div>
+              </div>
+              
+              <!-- Confirm Password -->
+              <div class="mb-4">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+              </div>
+              
+              <!-- Terms -->
+              <div class="mb-4 form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+              </div>
+              
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-ghana btn-lg w-100 py-2 mb-3">Create Account</button>
+              
+              <!-- Divider -->
+              <div class="divider">OR</div>
+              
+              <!-- Social Login -->
+              <div class="text-center">
+                <p class="mb-3">Sign up with:</p>
+                <div class="d-flex justify-content-center gap-3">
+                  <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 45px; height: 45px;">
+                    <i class="fab fa-google"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline-primary rounded-circle" style="width: 45px; height: 45px;">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Footer -->
+          <div class="card-footer text-center bg-light py-3">
+            <p class="mb-0">Already have an account? <a href="login.html" class="text-primary">Log in</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4" style="background: var(--text-dark); color: #fff;">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <img src="edumath-gh-logo-white.svg" alt="EduMath GH" height="50" class="mb-3">
+          <p>WAEC-aligned maths tutoring platform designed specifically for Ghanaian schools and students.</p>
+          <div>
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Programmes</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Resources</a></li>
+            <li><a href="#" class="text-white text-decoration-none">For Schools</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Support</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Help Center</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="text-uppercase mb-3" style="color: var(--accent-orange);">Contact</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Accra, Ghana</li>
+            <li><i class="fas fa-phone me-2"></i> +233 24 123 4567</li>
+            <li><i class="fas fa-envelope me-2"></i> support@edumathgh.com</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: #555;">
+      <div class="text-center">
+        <p class="small mb-0">&copy; 2023 EduMath GH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Script -->
+  <script>
+    function selectAccountType(type) {
+      // Update active button
+      document.querySelectorAll('.account-type-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+      
+      // Show/hide school field for teachers
+      const schoolField = document.getElementById('schoolField');
+      if (type === 'teacher') {
+        schoolField.style.display = 'block';
+      } else {
+        schoolField.style.display = 'none';
+      }
+    }
+    
+    // Form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Add your signup logic here
+      alert('Account creation functionality would be implemented here');
+      // window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>
